@@ -37,11 +37,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onModuleDownloaded() {
-//        val packageName = "pl.ing.techblog.feature"
-//        val className = ".FeatureActivity"
-//        val intent = Intent(Intent.ACTION_VIEW).setClassName(packageName,packageName + className)
-//        startActivity(intent)
-
         val feature = Class.forName("pl.ing.techblog.feature.FeatureImpl").newInstance() as Feature
         textView.setText(feature.featureString)
     }
