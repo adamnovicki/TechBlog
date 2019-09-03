@@ -1,4 +1,4 @@
-package pl.ing.techblog;
+package pl.ing.techblog.dynamic;
 
 /**
  * Created by adamnowicki on 2019-08-23.

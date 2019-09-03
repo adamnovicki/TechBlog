@@ -1,4 +1,4 @@
-package pl.ing.techblog
+package pl.ing.techblog.dynamic
 
 import android.app.Activity
 import android.content.Context
@@ -9,7 +9,6 @@ import com.google.android.play.core.splitinstall.SplitInstallRequest
 import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 import timber.log.Timber
-import java.lang.ref.WeakReference
 
 /**
  * Created by adamnowicki on 2019-08-22.
@@ -32,7 +31,9 @@ class FeatureModuleProxy {
                 Timber.d("Downloaded ${state.bytesDownloaded().toInt()} from ${state.totalBytesToDownload().toInt()}")
             }
             SplitInstallSessionStatus.REQUIRES_USER_CONFIRMATION -> {
-                manager?.startConfirmationDialogForResult(state, getActivityCallback?.let { it() }, VV_CONFIRMATION_REQUEST_CODE)
+                manager?.startConfirmationDialogForResult(state, getActivityCallback?.let { it() },
+                    VV_CONFIRMATION_REQUEST_CODE
+                )
             }
             SplitInstallSessionStatus.INSTALLED -> {
                 callback?.let { it() }

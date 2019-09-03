@@ -1,6 +1,6 @@
 package pl.ing.techblog.feature;
 
-import pl.ing.techblog.Feature;
+import pl.ing.techblog.dynamic.Feature;
 
 /**
  * Created by adamnowicki on 2019-08-23.

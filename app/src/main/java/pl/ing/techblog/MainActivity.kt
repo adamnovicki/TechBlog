@@ -12,6 +12,10 @@ import dagger.android.AndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.ing.techblog.data.AppRepository
+import pl.ing.techblog.dynamic.Feature
+import pl.ing.techblog.dynamic.FeatureDynamic
+import pl.ing.techblog.dynamic.FeatureModuleProxy
+import pl.ing.techblog.dynamic.VV_CONFIRMATION_REQUEST_CODE
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
@@ -56,8 +60,13 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     }
 
     private fun onModuleDownloaded() {
-        val feature = Class.forName("pl.ing.techblog.feature.FeatureImpl").newInstance() as Feature
-        textView.setText(feature.featureString)
+        val app = application as MyApplication
+        app.addModuleInjector(FeatureDynamic)
+
+        val fragment = Class.forName("pl.ing.techblog.feature.fragment.FeatureFragment").newInstance() as Fragment
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
     }
 
     override fun onResume() {
